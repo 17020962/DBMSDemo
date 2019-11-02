@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
+        integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <% include menu %>
+    <div class="container" style="width: 60%">
+
+        <div class="jumbotron" style="text-align: center">
+            <h1 class="display-3">Xem dữ liệu người dùng</h1>
+            <p class="lead">liên kết mongoDB</p>
+            <hr class="my-2">
+            <p>Dữ liệu người dùng</p>
+        </div>
+
+        <table class="table table-striped">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Số thứ tự</th>
+                    <th>Tên người dùng</th>
+                    <th>Số điện thoại người dùng</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% var i = 0; %>
+                <% data.forEach(function(motnguoidung){ %>
+                <tr>
+                    <td><%= i %></td>
+                    <td scope="row"><%= motnguoidung.ten %></td>
+                    <td><%= motnguoidung.std %></td>
+                    <td>
+                        <a href="/sua/<%= motnguoidung._id %>">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        /
+                        <a onclick="return xoahaykhong('Ban co chac xoa khong?');" href="/xoa/<%= motnguoidung._id %>">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                <% i++; %>
+                <% }) %>
+            </tbody>
+        </table>
+        <div class="them" style="text-align: center">
+            <a href="/them"><i class="fa fa-plus"></i></a>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+<script>
+
+    function xoahaykhong(str) {
+        if (window.confirm(str) == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
+    integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
+    crossorigin="anonymous"></script>
+
+</html>
